@@ -1,4 +1,4 @@
 # master
-SUBSYSTEM=="misc", KERNEL=="vtmx", GROUP="dialout"
+SUBSYSTEM=="misc", KERNEL=="vtmx", GROUP="uucp", MODE="0660"
 # slaves
-SUBSYSTEM=="tty", KERNEL=="ttyV[0-9]*", GROUP="dialout"
+SUBSYSTEM=="tty", KERNEL=="ttyV[0-9]*", GROUP="uucp", MODE="0660"

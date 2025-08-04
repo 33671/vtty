@@ -7,7 +7,6 @@ modules: vtty.c vtty.h
 modules_install: modules
 	$(MAKE) -C $(KDIR) M=$$(pwd) modules_install
 	depmod -A
-	@if ! getent group dialout > /dev/null; then echo "Warning: group 'dialout' not found, not installing udev rules"; exit 1; fi
 	install -m 644 50-vtty.rules /usr/lib/udev/rules.d
 
 all: modules

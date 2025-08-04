@@ -257,19 +257,12 @@ static int vtty_tiocmset(struct tty_struct *tty, unsigned int set, unsigned int 
 {
 	struct vtty_port *port = &ports[tty->index];
 	unsigned long flags;
-	int ret;
-
 	spin_lock_irqsave(&port->port.lock, flags);
-	ret = vtty_wait_oob(port, &flags);
-
-	if(ret == 0) {
-		port->modem_state = (port->modem_state | set) & (~clear);
-		pr_debug("new modem state %x (%x %x)\n", port->modem_state, set, clear);
-		vtty_do_queue_oob(port, TAG_SET_MODEM, &port->modem_state, sizeof(port->modem_state));
-	}
-
+	port->modem_state = (port->modem_state | set) & (~clear);
 	spin_unlock_irqrestore(&port->port.lock, flags);
-	return ret;
+
+
+	return 0;
 }
 
 static int vtty_break_ctl(struct tty_struct *tty, int state)
