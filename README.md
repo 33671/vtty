@@ -1,5 +1,6 @@
 Virtual Serial Port driver for Linux
 ====================================
+this is a fork of [vtty](https://github.com/anszom/vtty), modified for arch linux aur build.
 
 This kernel module allows userspace programs to create virtual serial ports under /dev/ttyV#.
 
